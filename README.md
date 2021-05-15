@@ -18,7 +18,7 @@
 ### テーマを選んだ理由
 妻は日々ダイエットに励んでいます。
 残念ながら、長期間継続して実施している姿を見たことがありません。
-私が作成する初めての作品は、妻の役に立てるようなアプリをと考え、本テーマを選びました。
+私が作成する初めての作品は、妻の役に立てるようなアプリがよいと考え、本テーマを選びました。
 妻が楽しくダイエットを継続してくれる一助になることを願っています。
 また、同じようにダイエットや運動を、継続して続けることが出来ない方々の役にも立てると考えています。
 
@@ -38,12 +38,13 @@
 ## 設計書
 
 ### 機能一覧
-<https://docs.google.com/spreadsheets/d/1UgK-6l38k5T81XjcTIn7CHnGRkB_sBXS5xQWAVhWmks/edit#gid=0>
+<https://docs.google.com/spreadsheets/d/1afMK2iqljLFCDMafttg1WM-TASr4wy55GANCym5CtLU/edit#gid=0>
 
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
+- CSSフレームワーク:BootStrap
 - JSライブラリ：jQuery
 - 仮想環境：Cloud9
 
