@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :image
+
+  has_many:comments, dependent: :destroy
+  has_many:posts, dependent: :destroy
+  has_many:bookmarks, dependent: :destroy
+  has_many:relationships, dependent: :destroy
+  has_many:notifications, dependent: :destroy
+  has_many:likes, dependent: :destroy
+
 end

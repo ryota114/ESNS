@@ -10,7 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_061220) do
+ActiveRecord::Schema.define(version: 2021_05_21_075313) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id_id", null: false
+    t.integer "post_id_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id_id"], name: "index_bookmarks_on_post_id_id"
+    t.index ["user_id_id"], name: "index_bookmarks_on_user_id_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.integer "genre", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "post_id"
+    t.integer "commented_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "genre_id", null: false
+    t.string "body", null: false
+    t.string "exercise_intensity", default: "0", null: false
+    t.integer "exercise_time", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
