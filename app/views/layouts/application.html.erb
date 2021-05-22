@@ -4,17 +4,64 @@
     <title>ESNS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/1d4b351902.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-
+    <header>
+      <nav class="navrab navbar-expand-md navbar-light bg-light d-flex flex-row">
+        <!--ロゴ-->
+        <% if user_signed_in? %>
+          <a class="navbar-brand mr-auto" href="/posts"><%= image_tag 'logo.png', :size => "80x45" %></a>
+        <% else %>
+          <a class="navbar-brand mr-auto" href="/"><%= image_tag 'logo.png', :size => "80x45" %></a>
+        <% end %>
+        <!--ハンバーガーアイコン-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--ハンバーガーの適用-->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to root_path, class: "text-dark" do %>
+                  <i class="fas fa-bell px-2"></i><br/>
+                  通知
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "マイページ", my_page_users_path, class: "btn btn-outline-dark text-dark mr-3 py-1 nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ランキング", ranking_posts_path, class: "btn btn-outline-dark text-dark mr-3 py-1 nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark text-dark mr-3 py-1 nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "ABOUT", about_path, class: "btn btn-outline-dark text-dark mr-3 py-1 nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark text-dark mr-3 py-1 nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規作成", new_user_registration_path, class: "btn btn-outline-dark text-dark mr-3 py-1 nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
     <main>
       <%= yield %>
     </main>
+
   </body>
 </html>
