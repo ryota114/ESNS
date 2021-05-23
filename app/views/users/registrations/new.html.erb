@@ -1,29 +1,85 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row mt-3 mb-5">
+    <div class="col-md-3 offset-md-1">
+      <h2>新規作成</h2>
+    </div>
+  </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row my-3">
+    <div class="col-md-12">
+      <%= render "users/shared/error_messages", resource: resource %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="row my-3">
+    <div class="col-md-3 offset-md-1">
+      <div class="field">
+        <%= f.label "ニックネーム" %><br />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", size: "35" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row my-3">
+    <div class="col-md-3 offset-md-1">
+      <div class="field">
+        <%= f.label "メールアドレス" %><br />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.email_field :email, autocomplete: "email", size: "35" %>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="row mt-3">
+    <div class="col-md-3 offset-md-1">
+      <div class="field">
+        <%= f.label "パスワード" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password", size: "35" %>
+      </div>
+    </div>
   </div>
+
+  <div class="row mt-1">
+    <div class="col-md-3 offset-md-1">
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-3 offset-md-1">
+      <div class="field">
+        <%= f.label "パスワードの確認" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", size: "35" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-md-12 text-center">
+      <div class="actions">
+        <%= f.submit "新規作成", class: "btn btn-success px-2" %>
+      </div>
+    </div>
+  </div>
+
 <% end %>
-
-<%= render "users/shared/links" %>
+</div>
