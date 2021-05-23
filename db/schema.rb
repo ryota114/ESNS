@@ -29,12 +29,6 @@ ActiveRecord::Schema.define(version: 2021_05_21_075313) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.integer "genre", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "likes", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
@@ -55,8 +49,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_075313) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "genre_id", null: false
     t.string "body", null: false
+    t.integer "genre", default: 0, null: false
     t.string "exercise_intensity", default: "0", null: false
     t.integer "exercise_time", default: 0, null: false
     t.datetime "created_at", null: false
@@ -79,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_05_21_075313) do
     t.string "name", default: "", null: false
     t.string "introduction"
     t.string "image_id"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

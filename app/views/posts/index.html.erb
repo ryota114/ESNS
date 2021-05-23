@@ -1,7 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      投稿一覧部分
+      <% @posts.each do |post| %>
+        <!--ユーザー・ジャンル表示部-->
+        <div class="row">
+          <%= attachment_image_tag @test, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "circle" %>
+          <%= @test.name %>
+        </div>
+        <!--投稿・画像表示部-->
+        <div class="row">
+
+        </div>
+      <% end %>
     </div>
     <div class="col-md-4">
       <div class="row ml-0">
