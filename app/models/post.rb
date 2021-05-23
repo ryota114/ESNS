@@ -1,7 +1,9 @@
 class Post < ApplicationRecord
 
-  enum genre: { "その他": 0, "ダイエット": 1, "筋トレ": 2, "スポーツ": 3, "生活": 4, "食事": 5 }
-  enum exercise_intensity: { "かなりゆるい": 0, "ゆるい": 1, "普通": 2, "ハード": 3, "かなりハード": 4 }
+  enum genre: { "ダイエット": 0, "筋トレ": 1, "スポーツ": 2, "生活": 3, "食事": 4, "その他": 5 }
+  enum exercise_intensity: { "かなりゆるい": 0, "ゆるい": 1, "普通": 2, "ハード": 3, "かなりハード": 4, "運動なし": 5 }
+
+  attachment :post_image
 
   belongs_to:user
   has_many:likes, dependent: :destroy

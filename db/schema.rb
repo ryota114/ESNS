@@ -51,7 +51,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_075313) do
     t.integer "user_id", null: false
     t.string "body", null: false
     t.integer "genre", default: 0, null: false
-    t.string "exercise_intensity", default: "0", null: false
+    t.string "post_image_id"
+    t.integer "exercise_intensity", default: 0, null: false
     t.integer "exercise_time", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -4,7 +4,8 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :user_id, null: false
       t.string :body, null: false
       t.integer :genre, default: 0, null: false
-      t.string :exercise_intensity, default: 0, null: false
+      t.string  :post_image_id
+      t.integer :exercise_intensity, default: 0, null: false
       t.integer :exercise_time, default: 0, null: false
 
       t.timestamps
