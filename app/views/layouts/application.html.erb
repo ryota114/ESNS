@@ -29,7 +29,7 @@
           <ul class="navbar-nav">
             <% if user_signed_in? %>
               <li class="nav-item mr-4">
-                <%= link_to root_path, class: "text-dark" do %>
+                <%= link_to notifications_path, class: "text-dark" do %>
                   <i class="fas fa-bell px-2"></i><br/>
                   通知
                 <% end %>

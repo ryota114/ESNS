@@ -59,4 +59,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  # userの新規登録後のリダイレクト先
+  def after_sign_up_path_for(resource_or_scope)
+    if resource_or_scope.is_a?(User)
+      posts_path
+    end
+  end
+
 end
