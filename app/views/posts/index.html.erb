@@ -16,12 +16,12 @@
               <%= post.body %>
             </div>
             <div class="row">
-              <p class="mb-0 mt-3 ml-auto"><%= post.exercise_intensity %> x <%= post.exercise_time %>分</p>
+              <p class="ml-auto mt-3 mb-0"><%= post.exercise_intensity %> x <%= post.exercise_time %>分</p>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 my-1">
             <% if post.post_image_id? %>
-              <%= attachment_image_tag post, :post_image, :fill, 200,100, format: 'jpeg' %>
+              <%= attachment_image_tag post, :post_image, :fill, 90,65, format: 'jpeg' %>
             <% end %>
           </div>
         </div>

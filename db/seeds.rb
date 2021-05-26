@@ -8,10 +8,11 @@
 
 User.create!(
   name: "テスト太郎",
-  email: "test@gmail.com",
+  email: "test@test.com",
   password: "testtest",
   encrypted_password: "testtest",
   introduction: "test",
+  is_deleted: false
   )
 
 Post.create!(

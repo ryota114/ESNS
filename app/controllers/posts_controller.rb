@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit( :user_id, :body, :genre, :post_image, :exercise_intensity, :exercise_time )
+    params.require(:post).permit( :body, :genre, :post_image, :exercise_intensity, :exercise_time )
   end
 
 end
