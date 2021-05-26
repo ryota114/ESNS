@@ -1,0 +1,4 @@
+<!--id=indexのhtmlを更新する-->
+$("#index").html("<%= j( render "posts/index", posts: @posts ) %>");
+<!--js-formをclassに指定したfomrを空にする。今回は投稿form-->
+$(".js-form")[0].reset();

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   def index
     # 仮実装、想定はHOMEやジャンル・ブックマークなど各条件で表示する投稿を分岐させる予定
-    @posts = Post.all
+    @posts = Post.all.reverse_order
     @post = Post.new
   end
 
@@ -13,7 +13,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to posts_path
+    @posts = Post.all.reverse_order
+    # redirect_to posts_path
   end
 
   def edit
