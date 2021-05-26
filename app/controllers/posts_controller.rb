@@ -32,14 +32,8 @@ class PostsController < ApplicationController
   def search
     @post = Post.new
     @search_posts = Post.search(params[:keyword])
-    @search_users = User.search(params[:keyword])
-
-    if @search_posts.present? || @search_users.present?
-      @keyword = params[:keyword]
-      render "search"
-    else
-      render "search"
-    end
+    @keyword = params[:keyword]
+    render "search"
   end
 
 
