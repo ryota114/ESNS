@@ -13,4 +13,7 @@ class Post < ApplicationRecord
   has_many:bookmarks, dependent: :destroy
   has_many:notifications, dependent: :destroy
 
+  def self.search(keyword)
+    where([ "genre like? OR body like?", "%#{keyword}%", "%#{keyword}%" ])
+  end
 end

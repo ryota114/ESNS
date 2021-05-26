@@ -13,4 +13,8 @@ class User < ApplicationRecord
   has_many:notifications, dependent: :destroy
   has_many:likes, dependent: :destroy
 
+  def self.search(keyword)
+    where([ "name like?", "%#{keyword}%" ])
+  end
+
 end

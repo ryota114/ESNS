@@ -8,17 +8,19 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/about" => "homes#about"
 
+  get "search" => "posts#search" #検索結果
+
   resources :users, only: [ :show, :edit, :index, :update] do
     collection do
-      get "my_page"     #ユーザーのマイページ
-      get "unsubscribe" #退会画面の確認
-      patch "withdraw"  #退会処理、論理削除
+      get "my_page"  => "users#my_page"     #ユーザーのマイページ
+      get "unsubscribe" => "users#unsubscribe" #退会画面の確認
+      patch "withdraw" => "users#withdraw"  #退会処理、論理削除
     end
   end
 
   resources :posts, except: [ :new ] do
     collection do
-      get "ranking" #投稿とフォロワーの人気ランキング
+      get "ranking"  => "posts#ranking" #投稿とフォロワーの人気ランキング
     end
   end
 
