@@ -12,16 +12,16 @@
         <!--投稿・画像・運動強度-->
         <div class="row border rounded">
           <div class="col-md-9">
-            <div class="row">
-              <%= post.body %>
-            </div>
-            <div class="row">
-              <p class="ml-auto mt-3 mb-0"><%= post.exercise_intensity %> x <%= post.exercise_time %>分</p>
-            </div>
+            <p class="mt-1 ml-1">
+              <%= post.body.truncate(70) %>
+            </p>
+            <p class="text-right mt-2 mb-0">
+              <%= post.exercise_intensity %> x <%= post.exercise_time %>分
+            </p>
           </div>
           <div class="col-md-3 my-1">
             <% if post.post_image_id? %>
-              <%= attachment_image_tag post, :post_image, :fill, 90,65, format: 'jpeg' %>
+              <%= attachment_image_tag post, :post_image, format: 'jpeg',class: "img-fluid rounded" %>
             <% end %>
           </div>
         </div>
