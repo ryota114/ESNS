@@ -13,6 +13,11 @@ class Post < ApplicationRecord
   has_many:bookmarks, dependent: :destroy
   has_many:notifications, dependent: :destroy
 
+  validates :body, presence: true
+  validates :genre, presence: true
+  validates :exercise_intensity, presence: true
+
+
   def self.search(keyword)
     where([ "genre like? OR body like?", "%#{keyword}%", "%#{keyword}%" ])
   end

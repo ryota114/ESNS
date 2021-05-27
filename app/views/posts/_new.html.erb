@@ -11,4 +11,11 @@
   <div class="text-center">
     <%= f.submit "投稿", class: "btn btn-success px-3 py-1 my-3" %>
   </div>
+
+  <!--投稿エラーの部分テンプレート、非同期通信error.js.erb-->
+  <div id="post_error">
+    <%= render 'layouts/error', model: post %>
+  </div>
+
 <% end %>
+

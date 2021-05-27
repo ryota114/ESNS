@@ -12,9 +12,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
     @posts = Post.all.reverse_order
-    # redirect_to posts_path
+    if @post.save
+    else
+      # posts/error.js.erbを呼び出している
+      render "error"
+    end
   end
 
   def edit
