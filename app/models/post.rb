@@ -17,8 +17,14 @@ class Post < ApplicationRecord
   validates :genre, presence: true
   validates :exercise_intensity, presence: true
 
-
+  # 検索時にgenreかbodyカラムに部分一致する場合検索結果とする
   def self.search(keyword)
     where([ "genre like? OR body like?", "%#{keyword}%", "%#{keyword}%" ])
   end
+
+  # ブックマーク時にすでにブックマークしているか確認
+  def bookmarked_by?(user)
+    Bookmark.where(user_id: user).exists?
+  end
+
 end

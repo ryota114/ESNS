@@ -1,1 +1,33 @@
-posts/show
+<div class="container">
+  <!--ユーザー部分-->
+  <div class="row mt-3 mx-3">
+    <%= attachment_image_tag @post.user, :image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg", size: "70x70", class: "rounded-circle text-nowrap py-0" %>
+    <font size="6" class="mt-2 ml-3"><%= @post.user.name %></font>
+    <!--[修正予定]ボタンではなくジャンルの一覧を表示するlink_toに変更予定-->
+    <div class="btn btn-danger my-4 ml-auto mr-3 px-2"><%= @post.genre %></div>
+  </div>
+
+  <!--記事内容部分-->
+  <div class="row mx-3 border rounded">
+    <div class="col-md-7 px-3 py-3">
+      <%= @post.body %>
+      <p class="mb-0 css-position-bottom">
+        <%= @post.exercise_intensity %> x <%= @post.exercise_time %>分
+      </p>
+    </div>
+    <div class="col-md-5 px-3 py-3">
+      <%= attachment_image_tag @post, :post_image, format: "jpeg", class: "img-fluid rounded" %>
+    </div>
+  </div>
+
+  <!--いいね・ブックマーク・編集・削除-->
+  <div class="row my-1">
+    <div class="col-12">
+    <% if @post.bookmarked_by?(current_user) %>
+      <%= link_to "ブックマークを外す", post_bookmark_path(@post), method: :delete, class: "text-dark" %>
+    <% else %>
+      <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :create, class: "text-dark" %>
+    <% end %>
+    </div>
+  </div>
+</div>
