@@ -14,3 +14,13 @@
  *= require_self
  */
  @import "bootstrap";
+
+.css-text-decolate:hover {
+  text-decoration: none;
+}
+
+.css-position-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

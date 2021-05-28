@@ -6,7 +6,7 @@
   <%= f.select :exercise_intensity, Post.exercise_intensities.keys, include_blank: "選択してください" %>
   x
   <%= f.select :exercise_time, Post.exercise_times.keys %>分</br>
-  <%= f.label :post_image, "画像", class: "mt-2"%></br>
+  <%= f.label :post_image, "画像", class: "mt-2"%>
   <%= f.attachment_field :post_image %></br>
   <div class="text-center">
     <%= f.submit "投稿", class: "btn btn-success px-3 py-1 my-3" %>

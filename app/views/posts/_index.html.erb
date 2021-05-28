@@ -7,12 +7,13 @@
     <div class="btn btn-danger my-2 ml-auto mr-3 px-2"><%= post.genre %></div>
   </div>
   <!--投稿・画像・運動強度-->
+  <%= link_to post_path(post.id), class: "css-text-decolate text-dark" do %>
   <div class="row border rounded">
     <div class="col-md-9">
-      <p class="mt-1 ml-1">
-        <%= post.body.truncate(70) %>
+      <p class="mt-1 ml-1 mb-4">
+        <%= post.body.truncate(82) %>
       </p>
-      <p class="text-right mt-2 mb-0">
+      <p class="mb-0 css-position-bottom">
         <%= post.exercise_intensity %> x <%= post.exercise_time %>分
       </p>
     </div>
@@ -22,4 +23,5 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 <% end %>
