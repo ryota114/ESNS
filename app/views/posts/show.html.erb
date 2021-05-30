@@ -21,13 +21,32 @@
   </div>
 
   <!--いいね・ブックマーク・編集・削除-->
-  <div class="row my-1">
-    <div class="col-12">
-    <% if @post.bookmarked_by?(current_user) %>
-      <%= link_to "ブックマークを外す", post_bookmark_path(@post), method: :delete, class: "text-dark" %>
-    <% else %>
-      <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :create, class: "text-dark" %>
-    <% end %>
+  <div class="row my-1 pl-5">
+    <div class="mr-3">
+      <% if @post.liked_by?(current_user) %>
+        <%= link_to post_likes_path(@post), method: :delete, class: "text-dark" do %>
+          ♥<%= @post.likes.count %>いいね
+        <% end %>
+      <% else %>
+        <%= link_to post_likes_path(@post), method: :create, class: "text-dark" do %>
+          ♡<%= @post.likes.count %>いいね
+        <% end %>
+      <% end %>
     </div>
+    <div>
+      <% if @post.bookmarked_by?(current_user) %>
+        <%= link_to "ブックマークを外す", post_bookmarks_path(@post), method: :delete, class: "text-dark" %>
+      <% else %>
+        <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :create, class: "text-dark" %>
+      <% end %>
+    </div>
+    <% if @post.user_id == current_user.id %>
+      <div class="ml-auto">
+        <%= link_to "編集", edit_post_path(@post), class: "btn btn-info px-3 py-1" %>
+      </div>
+      <div class="ml-3 mr-5">
+        <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-info px-3 py-1" %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -22,11 +22,11 @@ Rails.application.routes.draw do
     collection do
       get "ranking"  => "posts#ranking" #投稿とフォロワーの人気ランキング
     end
-    resources :bookmarks, only: [ :create, :destroy ]
+    resource :bookmarks, only: [ :create, :destroy ]
+    resource :likes, only: [ :create, :destroy ]
   end
 
   resources :comments, only: [ :create, :destroy ]
-  resources :likes, only: [ :create, :destroy ]
   resources :relationships, only: [ :create, :destroy ]
   resources :notifications, only: [ :create, :index ]
 

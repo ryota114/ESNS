@@ -24,7 +24,12 @@ class Post < ApplicationRecord
 
   # ブックマーク時にすでにブックマークしているか確認
   def bookmarked_by?(user)
-    Bookmark.where(user_id: user).exists?
+    bookmarks.where(user_id: user).exists?
+  end
+
+  # いいね時にすでにいいねしているか確認
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
   end
 
 end
