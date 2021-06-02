@@ -1,1 +1,21 @@
-users/unsubscribe
+<div class="container">
+  <div class="row my-4">
+    <div class="text-center mx-auto my-3">
+      <p><strong>本当に退会しますか？</strong></p>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    <div class="text-center mx-auto">
+      <p>退会した場合、今まで投稿した記事は全て削除されます。</p>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    <div class="mx-auto">
+    <%= link_to "マイページへ戻る", my_page_users_path, class: "btn btn-success px-2 mr-4" %>
+    <%= link_to "退会する", withdraw_users_path, method: :patch, class: "btn btn-danger px-2" %>
+    </div>
+  </div>
+
+</div>

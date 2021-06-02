@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row my-3">
     <div class="col-md-3">
-      <%= attachment_image_tag @user, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "rounded-circle" %>
-      <div class="mx-auto text-center">
+      <div class="text-center">
+        <%= attachment_image_tag @user, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "rounded-circle" %>
+      </div>
+      <div class="text-center mt-3">
         <%= link_to "投稿一覧をみる", posts_path, class: "text-dark" %>
       </div>
     </div>
@@ -20,7 +22,7 @@
           フォロワー　人数人
         <% end %>
       </div>
-      <div class="row border border-dark rounded py-2 px-2">
+      <div class="row border border-dark rounded py-2 px-2 text-wrap text-break">
         <%= @user.introduction %>
       </div>
     </div>
