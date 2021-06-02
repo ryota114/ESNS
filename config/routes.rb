@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [ :show, :edit, :index, :update] do
     collection do
-      get "my_page"  => "users#my_page"     #ユーザーのマイページ
-      get "unsubscribe" => "users#unsubscribe" #退会画面の確認
-      patch "withdraw" => "users#withdraw"  #退会処理、論理削除
+      get "my_page"  => "users#my_page"         #ユーザーのマイページ
+      get "follow" => "users#follow"            #フォロー一覧
+      get "follower" => "users#follower"        #フォロワー一覧
+      get "unsubscribe" => "users#unsubscribe"  #退会画面の確認
+      patch "withdraw" => "users#withdraw"      #退会処理、論理削除
     end
   end
 
@@ -29,6 +31,6 @@ Rails.application.routes.draw do
 
 
   resources :relationships, only: [ :create, :destroy ]
-  resources :notifications, only: [ :create, :index ]
+  resources :notifications, only: [ :index ]
 
 end

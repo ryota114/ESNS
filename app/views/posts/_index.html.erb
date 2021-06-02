@@ -1,8 +1,10 @@
 <% posts.each do |post| %>
   <!--ユーザー・ジャンル-->
   <div class="row mt-3">
-    <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "rounded-circle text-nowrap py-0" %>
-    <p class="mt-3"><%= post.user.name %></p>
+    <%= link_to my_page_users_path, class: "css-text-decolate" do %>
+      <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "rounded-circle py-0 d-inline"%>
+      <p class="mt-3 d-inline text-dark"><%= post.user.name %></p>
+    <% end %>
     <!--[修正予定]ボタンではなくジャンルの一覧を表示するlink_toに変更予定-->
     <div class="btn btn-danger my-2 ml-auto mr-3 px-2"><%= post.genre %></div>
   </div>
