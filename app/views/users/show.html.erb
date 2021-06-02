@@ -1,1 +1,33 @@
-users/show
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-3">
+      <div class="text-center">
+        <%= attachment_image_tag @user, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "rounded-circle" %>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row mt-5">
+        <h2 class="my-2"><%= @user.name %></h3>
+        <%= link_to "フォローする", posts_path, class: "btn btn-success px-2 my-2 ml-auto" %>
+      </div>
+      <div class="row my-3">
+        <%= link_to follow_users_path, class: "text-dark" do %>
+          フォロー　人数人
+        <% end %>
+        <%= link_to follow_users_path, class: "text-dark ml-3" do %>
+          フォロワー　人数人
+        <% end %>
+      </div>
+      <div class="row border border-dark rounded py-2 px-2 text-wrap text-break">
+        <%= @user.introduction %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+   <div class="col-10 offset-1">
+      <%= render "posts/index", posts: @posts %>
+    </div>
+  </div>
+
+</div>
