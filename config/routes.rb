@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   get "search" => "posts#search" #検索結果
 
   resources :users, only: [ :show, :edit, :index, :update] do
+    member do
+      get "following" => "users#following"            #フォロー一覧
+      get "followers" => "users#followers"        #フォロワー一覧
+    end
     collection do
       get "my_page"  => "users#my_page"         #ユーザーのマイページ
-      get "follow" => "users#follow"            #フォロー一覧
-      get "follower" => "users#follower"        #フォロワー一覧
       get "unsubscribe" => "users#unsubscribe"  #退会画面の確認
       patch "withdraw" => "users#withdraw"      #退会処理、論理削除
     end

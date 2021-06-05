@@ -15,11 +15,11 @@
         <%= link_to "情報の編集", edit_user_path(@user), class: "btn btn-success px-2 my-2 mx-3" %>
       </div>
       <div class="row my-3">
-        <%= link_to follow_users_path, class: "text-dark" do %>
-          フォロー　人数人
+        <%= link_to following_user_path(@user.id), class: "text-dark" do %>
+          フォロー<%= @user.following.count %>人
         <% end %>
-        <%= link_to follow_users_path, class: "text-dark ml-3" do %>
-          フォロワー　人数人
+        <%= link_to followers_user_path(@user.id), class: "text-dark ml-3" do %>
+          フォロワー<%= @user.followers.count %>人
         <% end %>
       </div>
       <div class="row border border-dark rounded py-2 px-2 text-wrap text-break">

@@ -8,14 +8,26 @@
     <div class="col-md-9">
       <div class="row mt-5">
         <h2 class="my-2"><%= @user.name %></h3>
-        <%= link_to "フォローする", posts_path, class: "btn btn-success px-2 my-2 ml-auto" %>
+        <!--フォローボタン-->
+        <div class="ml-auto">
+          <% if current_user.following?(@user) %>
+            <%= form_with model: @relationship, url:relationship_path, method: :delete, local:true do |f| %>
+              <%= f.submit "フォロー解除", class: "btn btn-secondary px-2 my-2 mr-5" %>
+            <% end %>
+          <% else %>
+            <%= form_with model: @set_relationship, url:relationships_path, local:true do |f| %>
+              <%= f.hidden_field :following_id, value: @user.id %>
+              <%= f.submit "フォローする", class: "btn btn-success px-2 my-2 mr-5" %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
       <div class="row my-3">
-        <%= link_to follow_users_path, class: "text-dark" do %>
-          フォロー　人数人
+        <%= link_to following_user_path(@user.id), class: "text-dark" do %>
+          フォロー<%= @user.following.count %>人
         <% end %>
-        <%= link_to follow_users_path, class: "text-dark ml-3" do %>
-          フォロワー　人数人
+        <%= link_to followers_user_path(@user.id), class: "text-dark ml-3" do %>
+          フォロワー<%= @user.followers.count %>人
         <% end %>
       </div>
       <div class="row border border-dark rounded py-2 px-2 text-wrap text-break">

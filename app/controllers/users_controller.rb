@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = Post.where(user_id: params[:id])
+    @relationship = current_user.following_relationships.find_by(follower_id: @user.id)
+    @set_relationship = current_user.follower_relationships.new
   end
 
   def edit
@@ -22,10 +24,14 @@ class UsersController < ApplicationController
     redirect_to my_page_users_path
   end
 
-  def follow
+  def following
+    @user = User.find(params[:id])
+    @users = @user.following
   end
 
-  def follower
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
   end
 
   def unsubscribe
