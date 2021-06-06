@@ -32,6 +32,10 @@ class PostsController < ApplicationController
   end
 
   def ranking
+    @posts = Post.includes(:liked_users).sort{|a,b| b.liked_users.count <=> a.liked_users.count }.first(4)
+    @post_rank = 0
+    @users = User.includes(:followers).sort{|a,b| b.followers.count <=> a.followers.count }.first(3)
+    @user_rank = 0
   end
 
   def search

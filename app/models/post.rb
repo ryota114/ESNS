@@ -7,11 +7,14 @@ class Post < ApplicationRecord
 
   attachment :post_image
 
-  belongs_to:user
-  has_many:likes, dependent: :destroy
-  has_many:comments, dependent: :destroy
-  has_many:bookmarks, dependent: :destroy
-  has_many:notifications, dependent: :destroy
+  belongs_to :user
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
+  # ランキング
+  has_many :liked_users, through: :likes, source: :user
 
   validates :body, {presence: true,length: {maximum: 140}}
   validates :genre, presence: true

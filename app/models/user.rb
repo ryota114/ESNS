@@ -11,8 +11,6 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  validates :name, {length: {maximum: 15}}
-
   # フォロー・フォロワー
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
   has_many :following, through: :following_relationships
@@ -22,6 +20,12 @@ class User < ApplicationRecord
   # 通知
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+
+  # ランキング
+  has_many :liked_posts, through: :likes, source: :post
+
+
+  validates :name, {length: {maximum: 15}}
 
   # フォローするとき
   def follow(user)
