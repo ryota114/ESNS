@@ -26,12 +26,12 @@ class UsersController < ApplicationController
 
   def following
     @user = User.find(params[:id])
-    @users = @user.following
+    @users = @user.following.order(created_at: :desc).page(params[:page]).per(16)
   end
 
   def followers
     @user = User.find(params[:id])
-    @users = @user.followers
+    @users = @user.followers.order(created_at: :desc).page(params[:page]).per(16)
   end
 
   def unsubscribe

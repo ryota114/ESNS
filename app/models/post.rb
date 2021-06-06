@@ -13,9 +13,10 @@ class Post < ApplicationRecord
   has_many:bookmarks, dependent: :destroy
   has_many:notifications, dependent: :destroy
 
-  validates :body, presence: true
+  validates :body, {presence: true,length: {maximum: 140}}
   validates :genre, presence: true
   validates :exercise_intensity, presence: true
+
 
   # 検索時にgenreかbodyカラムに部分一致する場合検索結果とする
   def self.search(keyword)

@@ -81,3 +81,6 @@ gem "chartkick"
 
 # RuboCop
 gem "rubocop", require: false, group: :development
+
+# Kaminari
+gem 'kaminari'
