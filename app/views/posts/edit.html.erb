@@ -1,1 +1,47 @@
-posts/edit
+<div class="container">
+  <%= form_with model: @post do |f| %>
+    <div class="row mt-5">
+      <div class="col-2 offset-2">
+        <%= f.label :body, "投稿編集" %>
+      </div>
+      <div class="col-5">
+        <%= f.text_area :body, size: "40x8" %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-2 offset-2">
+        <%= f.label :genre, "ジャンル" %>
+      </div>
+      <div class="col-5">
+        <%= f.select :genre, Post.genres.keys %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-2 offset-2">
+        <%= f.label :exercise_intensity, "運動量" %>
+      </div>
+      <div class="col-5">
+        <%= f.select :exercise_intensity, Post.exercise_intensities.keys %>
+        x
+        <%= f.select :exercise_time, Post.exercise_times.keys %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-2 offset-2">
+        <%= f.label :image, "画像" %>
+      </div>
+      <div class="col-5">
+        <%= f.attachment_field :post_image %>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="mx-auto">
+        <%= f.submit "編集完了", class: "btn btn-success px-2 py-1 my-3 mr-5" %>
+      </div>
+    </div>
+  <% end %>
+</div>
