@@ -36,4 +36,47 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
+  # いいね通知
+  def create_notification_like(current_user)
+    # すでにいいねされているかレコードの存在をifでチェック
+    check = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_user.id, user_id, id, "like"])
+    if check.blank?
+      notification = current_user.active_notifications.new(
+        post_id: id,
+        visited_id: user_id,
+        action: "like"
+      )
+      # 自分の投稿に対するいいねは通知済みとして処理する
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+
+  # コメント通知
+  # 自分以外に該当記事に対してコメントしている人を全て取得し、全てに通知を送る
+  def create_notification_comment(current_user, comment_id)
+    commented_users = Comment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
+    commented_users.each do |commented_user|
+      save_notification_comment(current_user, comment_id, commented_user["user_id"])
+    end
+    # まだ誰もコメントしていない場合は、投稿者のみに通知を送る
+    save_notification_comment(current_user, comment_id, user_id) if commented_users.blank?
+  end
+
+  # コメント通知の保存,create_notification_commnet内で使用
+  def save_notification_comment(current_user, comment_id, visited_id)
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      comment_id: comment_id,
+      visited_id: visited_id,
+      action: "comment"
+      )
+      # 自分の投稿に対するコメントの場合は、通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+  end
 end

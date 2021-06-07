@@ -1,4 +1,7 @@
 class Notification < ApplicationRecord
+  
+  # デフォルトの並び順を作成日時の降順
+  default_scope -> { order(created_at: :desc) }
 
   belongs_to :post, optional: true
   belongs_to :comment, optional: true
