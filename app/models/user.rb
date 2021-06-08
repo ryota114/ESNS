@@ -42,5 +42,16 @@ class User < ApplicationRecord
     following_relationships.find_by(following_id: user.id)
   end
 
+  # フォロー通知
+  def create_notification_follow(current_user)
+    notificationed = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, "follow"])
+    if notificationed.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: "follow"
+      )
+      notification.save if notification.valid?
+    end
+  end
 
 end

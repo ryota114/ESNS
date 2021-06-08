@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     comment.post_id = post.id
     comment.user_id = current_user.id
     comment.save
+    post.create_notification_comment(current_user, comment.id)
     redirect_to request.referer
   end
 
