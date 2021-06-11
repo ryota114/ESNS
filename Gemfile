@@ -78,6 +78,7 @@ gem "refile-mini_magick"
 
 # chartkick
 gem "chartkick"
+gem "groupdate"
 
 # RuboCop
 gem "rubocop", require: false, group: :development
