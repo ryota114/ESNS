@@ -1,3 +1,4 @@
+<ul class="pl-0">
 <% posts.each do |post| %>
   <!--ユーザー・ジャンル-->
   <div class="row mt-3">
@@ -19,7 +20,7 @@
 
   <!--投稿・画像・運動強度-->
   <%= link_to post_path(post.id), class: "css-text-decolate text-dark" do %>
-  <div class="row border rounded">
+  <div class="row border rounded mb-5">
     <div class="col-md-9">
       <p class="mt-1 ml-1 mb-4">
         <%= post.body.truncate(82) %>
@@ -36,3 +37,4 @@
   </div>
   <% end %>
 <% end %>
+</ul>

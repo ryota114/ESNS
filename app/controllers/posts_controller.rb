@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   def index
     # 仮実装、想定はHOMEやジャンル・ブックマークなど各条件で表示する投稿を分岐させる予定
-    @posts = Post.all.reverse_order
+    @posts = Post.order(created_at: "DESC").page(params[:page]).without_count.per(10)
     @post = Post.new
   end
 
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @posts = Post.all.reverse_order
+    @posts = Post.order(created_at: "DESC").page(params[:page]).without_count.per(10)
     if @post.save
     else
       # posts/error.js.erbを呼び出している
