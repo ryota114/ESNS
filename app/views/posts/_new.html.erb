@@ -1,5 +1,5 @@
 <%= form_with model: post, class: "js-form" do |f| %>
-  <%= f.text_area :body, :placeholder => "投稿内容を入力してください", size: "40x5" %></br>
+  <%= f.text_area :body, :placeholder => "投稿内容を入力してください", size: "40x5",class: "rounded shadow-sm border border-1" %></br>
   <%= f.label :genre, "ジャンル名", class: "mr-3 mt-2" %>
   <%= f.select :genre, Post.genres.keys, include_blank: "選択してください" %></br>
   <%= f.label :exercise_intensity, "運動量", class: "mr-3 mt-2" %>

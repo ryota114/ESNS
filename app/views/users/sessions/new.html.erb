@@ -1,50 +1,51 @@
-<div class="container">
+<div class="jumbotron">
+  <div class="container">
+    <% if flash[:error] %>
+      <p class="text-red"><%= flash[:error] %></p>
+    <% end %>
 
-  <% if flash[:error] %>
-    <p class="text-red"><%= flash[:error] %></p>
+    <div class="row mt-3 mb-5">
+      <div class="col-md-3 offset-md-1 text-danger">
+        <h2>ログイン</h2>
+      </div>
+    </div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="row my-3">
+      <div class="col-md-3 offset-md-1">
+        <div class="field text-danger">
+          <%= f.label "登録メールアドレス" %><br />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <%= f.email_field :email, autocomplete: "email", size: "35" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-3 offset-md-1">
+        <div class="field text-danger">
+          <%= f.label "パスワード" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "current-password", size: "35" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <div class="col-md-12 text-center">
+        <div class="actions">
+          <%= f.submit "ログイン", class: "btn btn-success px-2" %>
+        </div>
+      </div>
+    </div>
+
   <% end %>
-
-  <div class="row mt-3 mb-5">
-    <div class="col-md-3 offset-md-1">
-      <h2>ログイン</h2>
-    </div>
   </div>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-  <div class="row my-3">
-    <div class="col-md-3 offset-md-1">
-      <div class="field">
-        <%= f.label "登録メールアドレス" %><br />
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="field">
-        <%= f.email_field :email, autocomplete: "email", size: "35" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row mt-3">
-    <div class="col-md-3 offset-md-1">
-      <div class="field">
-        <%= f.label "パスワード" %>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="field">
-        <%= f.password_field :password, autocomplete: "current-password", size: "35" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-md-12 text-center">
-      <div class="actions">
-        <%= f.submit "ログイン", class: "btn btn-success px-2" %>
-      </div>
-    </div>
-  </div>
-
-<% end %>
 </div>

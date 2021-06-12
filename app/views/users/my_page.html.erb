@@ -5,13 +5,13 @@
         <%= attachment_image_tag @user, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "rounded-circle" %>
       </div>
       <div class="text-center mt-3">
-        <%= link_to "投稿一覧をみる", posts_path, class: "text-dark" %>
+        <%= link_to "投稿一覧をみる", posts_path(bookmark: current_user.id), class: "text-dark" %>
       </div>
     </div>
     <div class="col-md-9">
       <div class="row mt-5">
         <h2 class="my-2"><%= @user.name %></h3>
-        <%= link_to "ブックマーク", posts_path, class: "btn btn-success px-2 my-2 ml-auto" %>
+        <%= link_to "ブックマーク", bookmark_path, class: "btn btn-success px-2 my-2 ml-auto" %>
         <%= link_to "情報の編集", edit_user_path(@user), class: "btn btn-success px-2 my-2 mx-3" %>
       </div>
       <div class="row my-3">
@@ -22,7 +22,7 @@
           フォロワー<%= @user.followers.count %>人
         <% end %>
       </div>
-      <div class="row border border-dark rounded py-2 px-2 text-wrap text-break">
+      <div class="row border border-1 rounded py-2 px-2 text-wrap text-break shadow-sm css-bg-white">
         <%= @user.introduction %>
       </div>
     </div>

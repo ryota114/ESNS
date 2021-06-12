@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row mt-3">
     <div class="col-8 jscroll">
+      <% if @genre %>
+        <p>"<%= @genre %>"の一覧</p>
+      <% end %>
       <!--一覧部分テンプレート-->
       <div class="next-jscroll" id="index">
         <%= render "posts/index", posts: @posts %>

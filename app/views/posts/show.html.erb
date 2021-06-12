@@ -12,12 +12,11 @@
         <font size="4" class="ml-3"><%= @post.user.name %></font>
       <% end %>
     <% end %>
-    <!--[修正予定]ボタンではなくジャンルの一覧を表示するlink_toに変更予定-->
-    <div class="btn btn-danger my-4 ml-auto mr-3 px-2"><%= @post.genre %></div>
+    <%= link_to "#{@post.genre}", posts_path(genre: @post.genre), class: "btn btn-danger my-4 ml-auto mr-3 px-2" %>
   </div>
 
   <!--記事内容部分-->
-  <div class="row mx-3 border rounded">
+  <div class="row mx-3 border rounded shadow-sm css-bg-white">
     <div class="col-md-7 px-3 py-3">
       <%= @post.body %>
       <p class="mb-0 css-position-bottom">
@@ -62,7 +61,7 @@
   <!--コメント投稿-->
   <%= form_with model:[@post,@comment], local:true do |f| %>
     <div class="row">
-      <%= f.text_area :body, placeholder: "コメント", size: "65x3", class: "ml-auto mr-4 mt-4" %>
+      <%= f.text_area :body, placeholder: "コメント", size: "65x3", class: "ml-auto mr-4 mt-4 shadow-sm css-bg-white rounded border border-1" %>
     </div>
     <div class="row my-3">
       <%= f.submit "コメント", class: "btn btn-success px-3 py-1 mx-auto" %>
@@ -89,7 +88,7 @@
         <%= link_to "削除", post_comment_path(comment.post, comment),method: :delete, class: "btn btn-danger my-2 py-1 ml-auto px-2" %>
       <% end %>
     </div>
-    <div class="row border rounded mb-3 py-2 px-2">
+    <div class="row border rounded mb-3 py-2 px-2 shadow-sm css-bg-white rounded">
       <%= comment.body %>
     </div>
   <% end %>

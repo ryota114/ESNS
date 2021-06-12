@@ -5,7 +5,7 @@
         <%= f.label :body, "投稿編集" %>
       </div>
       <div class="col-5">
-        <%= f.text_area :body, size: "40x8" %>
+        <%= f.text_area :body, size: "40x8", class: "border border-1 rounded shadow-sm" %>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
       <div class="col-5">
         <%= f.select :exercise_intensity, Post.exercise_intensities.keys %>
         x
-        <%= f.select :exercise_time, Post.exercise_times.keys %>
+        <%= f.select :exercise_time, [ 0, 5, 10, 15, 30, 45, 60, 75, 90, 105, 120, 150, 180] %>
       </div>
     </div>
 

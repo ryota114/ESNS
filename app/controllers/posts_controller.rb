@@ -1,8 +1,32 @@
 class PostsController < ApplicationController
 
   def index
-    # 仮実装、想定はHOMEやジャンル・ブックマークなど各条件で表示する投稿を分岐させる予定
-    @posts = Post.order(created_at: "DESC").page(params[:page]).without_count.per(10)
+    # ジャンル、ブックマーク、自分の投稿及びフォロワーの投稿に分岐
+    if params[:genre] == "ダイエット"
+      @posts = Post.where(genre: "ダイエット").order(created_at: "DESC").page(params[:page]).without_count.per(10)
+      @genre = "ダイエット"
+    elsif params[:genre] == "筋トレ"
+      @posts = Post.where(genre: "筋トレ").order(created_at: "DESC").page(params[:page]).without_count.per(10)
+      @genre = "筋トレ"
+    elsif params[:genre] == "スポーツ"
+      @posts = Post.where(genre: "スポーツ").order(created_at: "DESC").page(params[:page]).without_count.per(10)
+      @genre = "スポーツ"
+    elsif params[:genre] == "生活"
+      @posts = Post.where(genre: "生活").order(created_at: "DESC").page(params[:page]).without_count.per(10)
+      @genre = "生活"
+    elsif params[:genre] == "食事"
+      @posts = Post.where(genre: "食事").order(created_at: "DESC").page(params[:page]).without_count.per(10)
+      @genre = "食事"
+    elsif params[:genre] == "その他"
+      @posts = Post.where(genre: "その他").order(created_at: "DESC").page(params[:page]).without_count.per(10)
+      @genre = "その他"
+    elsif params[:bookmark]
+      @posts = Post.where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).without_count.per(10)
+      @genre = "自分の投稿"
+    else
+      @users = current_user.following
+      @posts = Post.where(user_id: current_user.id).or(Post.where(user_id: @users.ids)).order(created_at: "DESC").page(params[:page]).without_count.per(10)
+    end
     @post = Post.new
   end
 
@@ -14,11 +38,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    # 非同期通信で投稿を追加するので、index側の@postsとの関係per(11)にしなければ投稿が１つ消えてしまう
+    # 非同期通信で投稿をcreate、def indexの@postsとの関係性によりper(11)にしなければ投稿が１つ消えてしまう
     @posts = Post.order(created_at: "DESC").page(params[:page]).without_count.per(11)
     if @post.save
     else
-      # posts/error.js.erbを呼び出している
       render "error"
     end
   end
@@ -48,9 +71,14 @@ class PostsController < ApplicationController
 
   def search
     @post = Post.new
-    @search_posts = Post.search(params[:keyword])
     @keyword = params[:keyword]
+    @search_posts = Post.search(params[:keyword]).order(created_at: "DESC").page(params[:page]).without_count.per(10)
     render "search"
+  end
+
+  def bookmark
+    @post = Post.new
+    @bookmarks = Bookmark.where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).without_count.per(10)
   end
 
 

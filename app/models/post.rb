@@ -21,7 +21,7 @@ class Post < ApplicationRecord
 
   # 検索時にgenreかbodyカラムに部分一致する場合検索結果とする
   def self.search(keyword)
-    where([ "genre like? OR body like?", "%#{keyword}%", "%#{keyword}%" ])
+   where([ "body like?", "%#{keyword}%" ])
   end
 
   # ブックマーク時にすでにブックマークしているか確認

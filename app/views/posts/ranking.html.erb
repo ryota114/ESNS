@@ -2,7 +2,7 @@
   <div class="row my-3">
     <div class="col-md-7">
       <h3 class="my-3">人気の投稿</h3>
-      <div class="row border border-dark rounded">
+      <div class="row border border-1 rounded shadow-sm">
         <% @posts.each do |post| %>
           <% @post_rank += 1 %>
           <div class="col-5 my-2 mx-3">
@@ -12,7 +12,7 @@
               <p class="d-inline"><%= post.user.name %></p>
             <% end %>
             <%= link_to post_path(post.id), class: "css-text-decolate text-dark" do %>
-              <div class="border border-dark rounded px-2 py-2">
+              <div class="border border-1 rounded px-2 py-2 shadow-sm css-bg-white">
                 <%= post.body.truncate(65) %></br>
                 <%= attachment_image_tag post, :post_image, format: 'jpeg', class: "img-fluid rounded" %></span>
               </div>
@@ -24,14 +24,21 @@
 
     <div class="col-md-4 ml-2">
       <h3 class="my-3">人気のユーザー</h3>
-      <div class="row border border-dark rounded">
+      <div class="row border border-1 rounded shadow-sm">
         <% @users.each do |user| %>
           <% @user_rank += 1 %>
           <div class="col-11 my-2 mx-3">
             <p class="mb-1">第<%= @user_rank %>位</p>
-            <%= link_to user_path(user.id), class: "css-text-decolate text-dark" do %>
-              <p><%= user.name %></p>
-              <div class="text-center"><%= attachment_image_tag user, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "rounded-circle" %></div>
+            <% if user.id == current_user.id %>
+              <%= link_to my_page_users_path, class: "css-text-decolate text-dark" do %>
+                <p><%= user.name %></p>
+                <div class="text-center"><%= attachment_image_tag user, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "rounded-circle" %></div>
+              <% end %>
+            <% else %>
+              <%= link_to user_path(user.id), class: "css-text-decolate text-dark" do %>
+                <p><%= user.name %></p>
+                <div class="text-center"><%= attachment_image_tag user, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "rounded-circle" %></div>
+              <% end %>
             <% end %>
           </div>
         <% end %>

@@ -1,20 +1,17 @@
 <div class="container">
   <div class="row mt-3">
-    <div class="col-8", id="index">
+    <div class="col-8 jscroll">
       <p>"<%= @keyword %>"の検索結果一覧</p>
-      <!--一覧部分テンプレート-->
-      <%= render "posts/index", posts: @search_posts %>
+      <div class="next-jscroll" id="search_index">
+        <%= render "posts/index", posts: @search_posts %>
+      </div>
+      <%= link_to_next_page @search_posts, 'Next Page', class: "next next-jscroll" %>
     </div>
 
     <div class="col-4 my-3">
       <p class="mt-3 mb-0">検索</p>
       <div class="row ml-0">
         <%= render "posts/search" %>
-      </div>
-      <p class="mt-3 mb-0">投稿</p>
-      <div class="row ml-0">
-        <!--投稿部分テンプレート-->
-        <%= render "posts/new", post: @post %>
       </div>
     </div>
   </div>

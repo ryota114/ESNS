@@ -1,6 +1,6 @@
 <div class="search_form">
   <%= form_with url: search_path, method: :get, local:true do |f| %>
-    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.text_field :keyword, value: @keyword, class: "shadow-sm rounded border border-1" %>
     <%= f.submit "検索", class: "ml-3" %>
   <% end %>
 </div>

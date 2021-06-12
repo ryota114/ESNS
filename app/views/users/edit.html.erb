@@ -8,7 +8,7 @@
         <%= f.label :name, "ユーザー名" %>
       </div>
       <div class="col-5">
-        <%= f.text_field :name %>
+        <%= f.text_field :name, class: "border border-1 shadow-sm css-bg-white" %>
       </div>
     </div>
 
@@ -17,7 +17,7 @@
         <%= f.label :introduction, "紹介文" %>
       </div>
       <div class="col-5">
-        <%= f.text_area :introduction, placeholder: "ここに紹介文を入力してください", size: "40x5" %>
+        <%= f.text_area :introduction, placeholder: "ここに紹介文を入力してください", size: "40x5", class: "border border-1 shadow-sm css-bg-white" %>
       </div>
     </div>
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/about" => "homes#about"
 
   get "search" => "posts#search" #検索結果
+  get "bookmark" => "posts#bookmark" #ユーザーのブックマーク一覧
 
   resources :users, only: [ :show, :edit, :index, :update] do
     member do

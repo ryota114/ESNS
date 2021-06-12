@@ -1,9 +1,9 @@
 <div class="container">
   <h2 class="my-3">フォロワーリスト</h2>
-  <div class="row border border-dark rounded">
+  <div class="row border border-1 rounded shadow-sm">
     <% @users.each do |user| %>
       <%= link_to user_path(user.id), class: "css-text-decolate mx-2 my-3 text-dark" do %>
-        <div class="col-md-12 border border-dark rounded">
+        <div class="col-md-12 border border-1 rounded shadow-sm css-bg-white">
           <%= attachment_image_tag user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "rounded-circle" %>
           <%= user.name.truncate(9) %>
         </div>
