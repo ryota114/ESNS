@@ -1,7 +1,7 @@
 $(window).on('scroll', () => {
   $('.jscroll').jscroll({
     nextSelector: 'a.next',
-    contentSelector: '.jscroll',
+    contentSelector: '.next-jscroll',
     autoTrigger: true
   });
 });

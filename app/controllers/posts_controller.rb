@@ -14,7 +14,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @posts = Post.order(created_at: "DESC").page(params[:page]).without_count.per(10)
+    # 非同期通信で投稿を追加するので、index側の@postsとの関係per(11)にしなければ投稿が１つ消えてしまう
+    @posts = Post.order(created_at: "DESC").page(params[:page]).without_count.per(11)
     if @post.save
     else
       # posts/error.js.erbを呼び出している

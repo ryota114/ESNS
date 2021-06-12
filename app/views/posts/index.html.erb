@@ -5,10 +5,8 @@
       <div class="next-jscroll" id="index">
         <%= render "posts/index", posts: @posts %>
       </div>
-      <%= link_to_next_page @posts, 'Next Page', class: "next" %>
+      <%= link_to_next_page @posts, 'Next Page', class: "next next-jscroll" %>
     </div>
-
-
 
     <div class="col-4 my-3">
       <p class="mt-3 mb-0">検索</p>
