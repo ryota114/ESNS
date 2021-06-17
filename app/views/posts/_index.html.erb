@@ -1,4 +1,8 @@
 <ul class="pl-0">
+<% if posts.blank? %>
+  <p class="mt-4">ここには自身の投稿や、フォロワーの投稿が表示されます。</p>
+  <p>さっそく投稿を行ったり、検索からユーザーを探してフォローしてみましょう。</p>
+<% else %>
 <% posts.each do |post| %>
   <!--ユーザー・ジャンル-->
   <div class="row mt-3">
@@ -35,5 +39,6 @@
     </div>
   </div>
   <% end %>
+<% end %>
 <% end %>
 </ul>

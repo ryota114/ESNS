@@ -39,7 +39,32 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     # 非同期通信で投稿をcreate、def indexの@postsとの関係性によりper(11)にしなければ投稿が１つ消えてしまう
-    @posts = Post.order(created_at: "DESC").page(params[:page]).without_count.per(11)
+    if params[:genre] == "ダイエット"
+      @posts = Post.where(genre: "ダイエット").order(created_at: "DESC").page(params[:page]).without_count.per(11)
+      @genre = "ダイエット"
+    elsif params[:genre] == "筋トレ"
+      @posts = Post.where(genre: "筋トレ").order(created_at: "DESC").page(params[:page]).without_count.per(11)
+      @genre = "筋トレ"
+    elsif params[:genre] == "スポーツ"
+      @posts = Post.where(genre: "スポーツ").order(created_at: "DESC").page(params[:page]).without_count.per(11)
+      @genre = "スポーツ"
+    elsif params[:genre] == "生活"
+      @posts = Post.where(genre: "生活").order(created_at: "DESC").page(params[:page]).without_count.per(11)
+      @genre = "生活"
+    elsif params[:genre] == "食事"
+      @posts = Post.where(genre: "食事").order(created_at: "DESC").page(params[:page]).without_count.per(11)
+      @genre = "食事"
+    elsif params[:genre] == "その他"
+      @posts = Post.where(genre: "その他").order(created_at: "DESC").page(params[:page]).without_count.per(11)
+      @genre = "その他"
+    elsif params[:bookmark]
+      @posts = Post.where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).without_count.per(11)
+      @genre = "自分の投稿"
+    else
+      @users = current_user.following
+      @posts = Post.where(user_id: current_user.id).or(Post.where(user_id: @users.ids)).order(created_at: "DESC").page(params[:page]).without_count.per(11)
+    end
+    
     if @post.save
     else
       render "error"
