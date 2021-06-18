@@ -85,3 +85,9 @@ gem "rubocop", require: false, group: :development
 
 # Kaminari
 gem 'kaminari'
+
+# デプロイ
+gem "dotenv-rails"
+group :production do
+  gem "mysql2"
+end 
