@@ -50,4 +50,3 @@
 
 ## 使用素材
 - ### [Logo Factory](http://www.logofactoryweb.com/default_lg.asp?lg=ja) サイトロゴの作成に使用
--
