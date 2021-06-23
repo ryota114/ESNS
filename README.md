@@ -1,4 +1,4 @@
-![ESNSのロゴ](app/assets/images/logo.png)
+<img src="app/assets/images/logo.png" width="300px">
 
 # ESNS(エスネス)
 
