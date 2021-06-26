@@ -4,12 +4,12 @@
     <% if @post.user == current_user %>
       <%= link_to my_page_users_path, class: "css-text-decolate text-dark" do %>
         <%= attachment_image_tag @post.user, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg", size: "60x60", class: "rounded-circle text-nowrap py-0 mt-3" %>
-        <font size="4" class="ml-3"><%= @post.user.name %></font>
+        <span size="4" class="ml-3"><%= @post.user.name %></span>
       <% end %>
     <% else %>
       <%= link_to user_path(@post.user), class: "css-text-decolate text-dark" do %>
         <%= attachment_image_tag @post.user, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg", size: "60x60", class: "rounded-circle text-nowrap py-0 mt-3" %>
-        <font size="4" class="ml-3"><%= @post.user.name %></font>
+        <span size="4" class="ml-3"><%= @post.user.name %></span>
       <% end %>
     <% end %>
     <%= link_to "#{@post.genre}", posts_path(genre: @post.genre), class: "btn btn-danger my-4 ml-auto mr-3 px-2" %>
@@ -75,12 +75,12 @@
       <% if comment.user == current_user %>
         <%= link_to my_page_users_path, class: "css-text-decolate text-dark" do %>
           <%= attachment_image_tag comment.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "rounded-circle text-nowrap py-0" %>
-          <fong size=3, class="ml-3 mt-3"><%= comment.user.name %></font>
+          <span size="3", class="ml-3 mt-3"><%= comment.user.name %></span>
         <% end %>
       <% else %>
         <%= link_to user_path(comment.user), class: "css-text-decolate text-dark" do %>
           <%= attachment_image_tag comment.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "rounded-circle text-nowrap py-0" %>
-          <fong size=3, class="ml-3 mt-3"><%= comment.user.name %></font>
+          <span size="3", class="ml-3 mt-3"><%= comment.user.name %></span>
         <% end %>
       <% end %>
 

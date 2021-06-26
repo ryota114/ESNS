@@ -1,13 +1,13 @@
 <%= form_with model: post, class: "js-form" do |f| %>
-  <%= f.text_area :body, :placeholder => "投稿内容を入力してください", size: "40x5",class: "rounded shadow-sm border border-1" %></br>
+  <%= f.text_area :body, :placeholder => "投稿内容を入力してください", size: "40x5",class: "rounded shadow-sm border border-1" %><br>
   <%= f.label :genre, "ジャンル名", class: "mr-3 mt-2" %>
-  <%= f.select :genre, Post.genres.keys, include_blank: "選択してください" %></br>
+  <%= f.select :genre, Post.genres.keys, include_blank: "選択してください" %><br>
   <%= f.label :exercise_intensity, "運動量", class: "mr-3 mt-2" %>
   <%= f.select :exercise_intensity, Post.exercise_intensities.keys, include_blank: "選択してください" %>
   x
-  <%= f.select :exercise_time, [ 0, 5, 10, 15, 30, 45, 60, 75, 90, 105, 120, 150, 180], {include_blank: '選択ボックス'} %>分</br>
+  <%= f.select :exercise_time, [ 0, 5, 10, 15, 30, 45, 60, 75, 90, 105, 120, 150, 180], {include_blank: '選択ボックス'} %>分<br>
   <%= f.label :post_image, "画像", class: "mt-2"%>
-  <%= f.attachment_field :post_image %></br>
+  <%= f.attachment_field :post_image %><br>
   <div class="text-center">
     <%= f.submit "投稿", class: "btn btn-success px-3 py-1 my-3" %>
   </div>
