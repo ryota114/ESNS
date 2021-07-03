@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   def index
     # ジャンル、ブックマーク、自分の投稿及びフォロワーの投稿に分岐
     if params[:genre] == "ダイエット"
@@ -64,7 +63,7 @@ class PostsController < ApplicationController
       @users = current_user.following
       @posts = Post.where(user_id: current_user.id).or(Post.where(user_id: @users.ids)).order(created_at: "DESC").page(params[:page]).without_count.per(11)
     end
-    
+
     if @post.save
     else
       render "error"
@@ -88,9 +87,9 @@ class PostsController < ApplicationController
   end
 
   def ranking
-    @posts = Post.includes(:liked_users).sort{|a,b| b.liked_users.count <=> a.liked_users.count }.first(4)
+    @posts = Post.includes(:liked_users).sort { |a, b| b.liked_users.count <=> a.liked_users.count }.first(4)
     @post_rank = 0
-    @users = User.includes(:followers).sort{|a,b| b.followers.count <=> a.followers.count }.first(3)
+    @users = User.includes(:followers).sort { |a, b| b.followers.count <=> a.followers.count }.first(3)
     @user_rank = 0
   end
 
@@ -106,11 +105,9 @@ class PostsController < ApplicationController
     @bookmarks = Bookmark.where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).without_count.per(10)
   end
 
-
   private
 
   def post_params
-    params.require(:post).permit( :body, :genre, :post_image, :exercise_intensity, :exercise_time )
+    params.require(:post).permit(:body, :genre, :post_image, :exercise_intensity, :exercise_time)
   end
-
 end

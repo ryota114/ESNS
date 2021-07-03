@@ -1,5 +1,4 @@
 class BookmarksController < ApplicationController
-
   def create
     post = Post.find(params[:post_id])
     bookmark = post.bookmarks.new(user_id: current_user.id)
@@ -17,5 +16,4 @@ class BookmarksController < ApplicationController
       redirect_to request.referer
     end
   end
-
 end

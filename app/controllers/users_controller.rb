@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def my_page
     @user = current_user
     # リクエストがあれば指定した月、なければ現在の月
@@ -14,11 +13,13 @@ class UsersController < ApplicationController
     nomal = Post.where(user_id: current_user.id, exercise_intensity: "普通", created_at: @month.all_month).group_by_day_of_month(:created_at).sum(:exercise_time)
     hard = Post.where(user_id: current_user.id, exercise_intensity: "ハード", created_at: @month.all_month).group_by_day_of_month(:created_at).sum(:exercise_time)
     very_hard = Post.where(user_id: current_user.id, exercise_intensity: "かなりハード", created_at: @month.all_month).group_by_day_of_month(:created_at).sum(:exercise_time)
-    @all_exercise_time = [{name: "かなりゆるい", data: very_soft, stack: "exercise"},
-                          {name: "ゆるい", data: soft, stack: "exercise"},
-                          {name: "普通", data: nomal, stack: "exercise"},
-                          {name: "ハード", data: hard, stack: "exercise"},
-                          {name: "かなりハード", data: very_hard, stack: "exercise"}]
+    @all_exercise_time = [
+      { name: "かなりゆるい", data: very_soft, stack: "exercise" },
+      { name: "ゆるい", data: soft, stack: "exercise" },
+      { name: "普通", data: nomal, stack: "exercise" },
+      { name: "ハード", data: hard, stack: "exercise" },
+      { name: "かなりハード", data: very_hard, stack: "exercise" },
+    ]
   end
 
   def show
@@ -61,11 +62,9 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-
   private
 
   def user_params
-    params.require(:user).permit(:name,:introduction,:image)
+    params.require(:user).permit(:name, :introduction, :image)
   end
-
 end

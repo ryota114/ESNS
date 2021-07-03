@@ -1,5 +1,4 @@
 class LikesController < ApplicationController
-
   def create
     post = Post.find(params[:post_id])
     like = post.likes.new(user_id: current_user.id)
@@ -14,5 +13,4 @@ class LikesController < ApplicationController
     like.destroy
     redirect_to request.referer
   end
-
 end

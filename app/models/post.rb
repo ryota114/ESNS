@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-
   enum genre: { "ダイエット": 0, "筋トレ": 1, "スポーツ": 2, "生活": 3, "食事": 4, "その他": 5 }
   enum exercise_intensity: { "かなりゆるい": 0, "ゆるい": 1, "普通": 2, "ハード": 3, "かなりハード": 4, "運動なし": 5 }
 
@@ -14,14 +13,13 @@ class Post < ApplicationRecord
   # ランキング
   has_many :liked_users, through: :likes, source: :user
 
-  validates :body, {presence: true,length: {maximum: 140}}
+  validates :body, { presence: true, length: { maximum: 140 } }
   validates :genre, presence: true
   validates :exercise_intensity, presence: true
 
-
   # 検索時にgenreかbodyカラムに部分一致する場合検索結果とする
   def self.search(keyword)
-   where([ "body like?", "%#{keyword}%" ])
+    where(["body like?", "%#{keyword}%"])
   end
 
   # ブックマーク時にすでにブックマークしているか確認
@@ -70,11 +68,11 @@ class Post < ApplicationRecord
       comment_id: comment_id,
       visited_id: visited_id,
       action: "comment"
-      )
-      # 自分の投稿に対するコメントの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
+    )
+    # 自分の投稿に対するコメントの場合は、通知済みとする
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
   end
 end

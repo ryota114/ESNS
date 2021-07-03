@@ -24,8 +24,7 @@ class User < ApplicationRecord
   # ランキング
   has_many :liked_posts, through: :likes, source: :post
 
-
-  validates :name, {length: {maximum: 15}}
+  validates :name, { length: { maximum: 15 } }
 
   # フォローするとき
   def follow(user)
@@ -53,5 +52,4 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
 end

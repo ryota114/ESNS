@@ -66,5 +66,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
       posts_path
     end
   end
-
 end
